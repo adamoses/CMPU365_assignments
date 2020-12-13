@@ -61,14 +61,17 @@ class PerceptronClassifier:
 
         for iteration in range(self.max_iterations):
             print("Starting iteration", iteration, "...")
+
             for i in range(len(trainingData)):
+
+                guessed_label = self.classify([trainingData[i]])[0]
                 
-                if not self.classify([trainingData[i]])[0] == trainingLabels[i]:
+                if not guessed_label == trainingLabels[i]:
                 
                     self.weights[trainingLabels[i]] += trainingData[i]
-                    self.weights[self.classify([trainingData[i]])[0]] -= trainingData[i] 
+                    self.weights[guessed_label] -= trainingData[i] 
 
-
+ 
 
 
     def classify(self, data):
